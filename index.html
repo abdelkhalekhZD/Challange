@@ -1,0 +1,333 @@
+
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🎯 التحدي اليومي</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        .container {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 30px;
+            padding: 40px 30px;
+            max-width: 500px;
+            width: 100%;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            text-align: center;
+            position: relative;
+            z-index: 10;
+        }
+
+        .headline {
+            font-size: 28px;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 30px;
+            line-height: 1.4;
+        }
+
+        .input-container {
+            margin-bottom: 25px;
+        }
+
+        input {
+            width: 100%;
+            padding: 18px 20px;
+            font-size: 18px;
+            border: 3px solid #667eea;
+            border-radius: 15px;
+            outline: none;
+            transition: all 0.3s;
+            text-align: center;
+            font-family: inherit;
+        }
+
+        input:focus {
+            border-color: #764ba2;
+            transform: scale(1.02);
+            box-shadow: 0 5px 20px rgba(118, 75, 162, 0.3);
+        }
+
+        .play-button {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 18px 40px;
+            font-size: 20px;
+            font-weight: bold;
+            border-radius: 15px;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 5px 20px rgba(102, 126, 234, 0.4);
+            width: 100%;
+            margin-bottom: 30px;
+        }
+
+        .play-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 30px rgba(102, 126, 234, 0.6);
+        }
+
+        .play-button:active {
+            transform: translateY(0);
+        }
+
+        .challenge-card {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 20px;
+            margin-bottom: 30px;
+            display: none;
+            animation: slideIn 0.5s ease-out;
+            box-shadow: 0 10px 30px rgba(245, 87, 108, 0.4);
+        }
+
+        .challenge-card.show {
+            display: block;
+        }
+
+        .challenge-card h2 {
+            font-size: 22px;
+            margin-bottom: 15px;
+        }
+
+        .challenge-card p {
+            font-size: 20px;
+            line-height: 1.6;
+            font-weight: 500;
+        }
+
+        .social-links {
+            margin-top: 30px;
+            padding-top: 30px;
+            border-top: 2px solid #e0e0e0;
+        }
+
+        .social-link {
+            display: block;
+            background: white;
+            border: 2px solid #667eea;
+            color: #667eea;
+            padding: 15px 25px;
+            margin-bottom: 15px;
+            border-radius: 15px;
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: bold;
+            transition: all 0.3s;
+        }
+
+        .social-link:hover {
+            background: #667eea;
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
+        }
+
+        .social-link.instagram {
+            background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+            color: white;
+            border: none;
+        }
+
+        .social-link.instagram:hover {
+            transform: translateY(-2px) scale(1.02);
+            box-shadow: 0 8px 25px rgba(188, 24, 136, 0.4);
+        }
+
+        .social-link.whatsapp {
+            background: #25D366;
+            color: white;
+            border: none;
+        }
+
+        .social-link.whatsapp:hover {
+            background: #1fb855;
+            transform: translateY(-2px) scale(1.02);
+            box-shadow: 0 8px 25px rgba(37, 211, 102, 0.4);
+        }
+
+        .share-story {
+            background: linear-gradient(45deg, #833ab4 0%, #fd1d1d 50%, #fcb045 100%);
+            color: white;
+            border: none;
+            margin-bottom: 15px;
+        }
+
+        .share-story:hover {
+            transform: translateY(-2px) scale(1.02);
+            box-shadow: 0 8px 25px rgba(131, 58, 180, 0.4);
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .floating-emoji {
+            position: fixed;
+            font-size: 40px;
+            pointer-events: none;
+            animation: float 4s ease-in-out infinite;
+            opacity: 0.6;
+            z-index: 1;
+        }
+
+        @keyframes float {
+
+            0%, 100% {
+                transform: translateY(0) rotate(0deg);
+            }
+            50% {
+                transform: translateY(-20px) rotate(10deg);
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 30px 20px;
+            }
+
+            .headline {
+                font-size: 24px;
+            }
+
+            input {
+                font-size: 16px;
+                padding: 15px;
+            }
+
+            .play-button {
+                font-size: 18px;
+                padding: 15px 30px;
+            }
+
+            .challenge-card h2 {
+                font-size: 20px;
+            }
+
+            .challenge-card p {
+                font-size: 18px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="floating-emoji" style="top: 10%; left: 10%;">🎯</div>
+    <div class="floating-emoji" style="top: 80%; left: 85%; animation-delay: 1s;">💪</div>
+    <div class="floating-emoji" style="top: 20%; right: 10%; animation-delay: 2s;">🔥</div>
+    <div class="floating-emoji" style="bottom: 15%; left: 15%; animation-delay: 1.5s;">⚡</div>
+
+    <div class="container">
+        <h1 class="headline">🎯 دخّل اسمك واكتشف التحدي اليومي ديالك!</h1>
+       
+        <div class="input-container">
+            <input type="text" id="nameInput" placeholder="دخّل سميتك هنا...">
+        </div>
+
+        <button class="play-button" onclick="generateChallenge()">⚡ اكتشف التحدي ديالي!</button>
+
+        <div class="challenge-card" id="challengeCard">
+            <h2 id="challengeTitle"></h2>
+            <p id="challengeText"></p>
+        </div>
+
+        <div class="social-links">
+            <a href="#" class="social-link share-story" id="shareStory">📸 شارك ف Story ديالك</a>
+            <a href="https://www.instagram.com/a.khalek_dev/" target="_blank" class="social-link instagram">📸 تابعني على Instagram</a>
+            <a href="https://wa.me/212718699021" target="_blank" class="social-link whatsapp">💬 تواصل معايا على WhatsApp</a>
+        </div>
+    </div>
+
+    <script>
+        const challenges = [
+            "سيفط هاد 3 ديال الناس عندك ف Instagram أنا كنكراهاك 😈",
+            "دير 100 push-ups 💪",
+            "شخص واحد عندك ف Instagram خاصو يجاوبك على هاد السؤال: فين غابر؟ 🤔",
+            "سيفط meme مضحك ل 2 ديال الناس اللي تعرفهم 😂",
+            "قول الحقيقة لشي حد اليوم 💬",
+            "شارك هاد النتيجة ف story ديالك 🎉",
+            "اتصل بصديق قديم وقول ليه كنتفكر فيك 📞",
+            "امشي تمشى 10000 خطوة اليوم 🚶",
+            "اشرب 8 كيسان د الما اليوم 💧",
+            "عطي compliment ل 3 ديال الناس 🌟",
+            "اقرا 20 صفحة من شي كتاب 📚",
+            "تعلم كلمة جديدة بلغة أجنبية 🗣️",
+            "دير meditation ل 10 دقايق ☮️",
+            "نظف غرفتك كاملة 🧹",
+            "اطبخ شي حاجة جديدة اليوم 👨‍🍳",
+            "اكتب 3 ديال الحوايج اللي راك شاكر عليهم 📝",
+            "ابعد على الهاتف ديالك ل ساعة كاملة 📵",
+            "عاون شي واحد اليوم 🤝",
+            "اسمع ألبوم كامل د الموسيقى 🎵",
+            "اركض 5 كيلوميطر 🏃"
+        ];
+
+        function generateChallenge() {
+            const nameInput = document.getElementById('nameInput');
+            const name = nameInput.value.trim();
+
+            if (name === '') {
+                alert('عافاك دخّل سميتك أولا! 😊');
+                return;
+            }
+
+            const randomChallenge = challenges[Math.floor(Math.random() * challenges.length)];
+            const challengeCard = document.getElementById('challengeCard');
+            const challengeTitle = document.getElementById('challengeTitle');
+            const challengeText = document.getElementById('challengeText');
+
+            challengeCard.classList.remove('show');
+
+            setTimeout(() => {
+                challengeTitle.textContent = `${name}! 🎯`;
+                challengeText.textContent = `التحدي ديالك اليوم: ${randomChallenge}`;
+                challengeCard.classList.add('show');
+
+                const shareStory = document.getElementById('shareStory');
+                const shareText = encodeURIComponent(`${name}!\nالتحدي ديالي اليوم: ${randomChallenge}\n\n🎯 جرب انت بزاف: instagram.com/a.khalek_dev`);
+                shareStory.href = `https://www.instagram.com/stories/create/`;
+                shareStory.onclick = function() {
+                    navigator.clipboard.writeText(`${name}!\nالتحدي ديالي اليوم: ${randomChallenge}\n\n🎯 جرب انت بزاف: instagram.com/a.khalek_dev`);
+                    alert('تم نسخ التحدي! دابا مشي لـ Instagram وشاركو ف Story 📸');
+                    return false;
+                };
+            }, 300);
+        }
+
+        document.getElementById('nameInput').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                generateChallenge();
+            }
+        });
+    </script>
+</body>
+</html>
+Show quoted text
