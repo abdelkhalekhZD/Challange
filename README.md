@@ -334,6 +334,17 @@
                 </div>
                 
                 <div class="motto">GRIND IN SILENCE</div>
+                
+                <div class="social-section">
+                    <a href="https://www.instagram.com/a.khalek_dev" target="_blank" class="social-btn instagram">
+                        <span class="icon">📱</span>
+                        <span class="text">Instagram</span>
+                    </a>
+                    <a href="https://wa.me/212718699021" target="_blank" class="social-btn whatsapp">
+                        <span class="icon">💬</span>
+                        <span class="text">WhatsApp</span>
+                    </a>
+                </div>
             </div>
         </div>
     </div>
